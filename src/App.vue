@@ -1,7 +1,7 @@
 <template>
   <div>
     <label for="maxCP" class="max-cp">
-      <input type="checkbox" id="maxCP" v-model="maxPoints" @change="bbb" />
+      <input type="checkbox" id="maxCP" v-model="maxPoints" />
       <small>Maximum Combat Points</small>
     </label>
     <input
