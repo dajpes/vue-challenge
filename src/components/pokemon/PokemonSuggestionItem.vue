@@ -2,7 +2,6 @@
   <li>
     <img :src="pokemon.img" :alt="pokemon.About" />
     <div className="info">
-        {{pokemon.Types}}
       <h1>
         <span style="margin-left: 10px">MaxCp:{{ pokemon.MaxCP || "0" }}</span>
       </h1>
