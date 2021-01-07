@@ -1,20 +1,20 @@
 <template>
   <div>
-    <ul v-if="pokemonListResult.length" className="suggestions">
+    <ul v-if="pokemonListResult.length" class="suggestions">
       <PokemonSuggestionItem
         v-for="pokemon in pokemonListResult"
         :key="+pokemon.Number"
         :pokemon="pokemon"
       />
     </ul>
-    <ul v-else>
+    <ul v-else class="suggestions">
       <li>
         <img
           src="https://cyndiquil721.files.wordpress.com/2014/02/missingno.png"
           alt=""
         />
-        <div className="info">
-          <h1 className="no-results">No results</h1>
+        <div class="info">
+          <h1 class="no-results">No results</h1>
         </div>
       </li>
     </ul>
