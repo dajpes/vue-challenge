@@ -3,7 +3,7 @@
     <img :src="pokemon.img" :alt="pokemon.About" />
     <div class="info">
       <PokemonName :name="pokemon.Name" />
-      <p>Cp:{{ pokemon.MaxCP || "0" }}</p>
+      <PokemonCp :cp="pokemon.MaxCP" />
       <PokemonType
         v-for="type in pokemon.Types"
         :key="`${type}_${pokemon.Number}`"
@@ -16,12 +16,13 @@
 <script>
 import PokemonType from "./PokemonType";
 import PokemonName from "./PokemonName";
+import PokemonCp from "./PokemonCp";
 export default {
   props: {
     pokemon: { type: Object, required: true },
   },
   setup() {
-    return { PokemonType, PokemonName };
+    return { PokemonType,PokemonName, PokemonCp };
   },
 };
 </script>
