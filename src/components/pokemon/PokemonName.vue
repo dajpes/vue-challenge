@@ -1,9 +1,6 @@
 <template>
   <h1>
-    <span class="">{{ name }}</span>
-    <p>
-        {{inputSearch}}
-    </p>
+    <span v-html="highLightName()"></span>
   </h1>
 </template>
 
@@ -13,9 +10,20 @@ export default {
   props: {
     name: { type: String, required: true },
   },
-  setup() {
+  setup(props) {
     const { inputSearch } = PokemonHandler();
-    return {inputSearch};
+    const highLightName = () => {
+      const searchPattern = new RegExp(inputSearch.value, "ig");
+      const foundName = props.name.search(searchPattern) !== -1;
+      return !foundName
+        ? props.name
+        : props.name.replace(
+            searchPattern,
+            '<span class="hl">' + inputSearch.value + "</span>"
+          );
+    };
+
+    return { inputSearch, highLightName };
   },
 };
 </script>
