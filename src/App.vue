@@ -11,7 +11,7 @@
       v-model="inputSearch"
       @input="searchPokemons"
     />
-    <!-- {loading && <div class="loader"></div>} -->
+    <div v-if="searchingPokemons" class="loader"></div>
 
     <PokemonSuggestion />
   </div>
@@ -28,6 +28,7 @@ export default {
       searchPokemons,
       pokemonListResult,
       maxPoints,
+      searchingPokemons,
       inputSearch,
       fetchPokemons,
     } = PokemonHandler();
@@ -36,6 +37,7 @@ export default {
 
     return {
       PokemonSuggestion,
+      searchingPokemons,
       pokemonListResult,
       maxPoints,
       inputSearch,
