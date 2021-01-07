@@ -17,8 +17,8 @@ export default function() {
       pokemonState.pokemonListResult.length = 0;
       return;
     }
+    console.log('No tengo q aparecer');
     pokemonState.searchingPokemons = true;
-    await new Promise((resolve) => setTimeout(resolve, 500));
 
     const getPokemons = pokemonState.pokemonList.filter(
       ({ Name: pokemonName, Types: types }) => {
@@ -26,7 +26,9 @@ export default function() {
           type.toLowerCase().startsWith(pokemonState.inputSearch.toLowerCase()),
         );
         return (
-          pokemonName.toLowerCase().includes(pokemonState.inputSearch.toLowerCase()) ||
+          pokemonName
+            .toLowerCase()
+            .includes(pokemonState.inputSearch.toLowerCase()) ||
           searchPokemonByType.length
         );
       },
