@@ -6,14 +6,14 @@
     </label>
     <input
       type="text"
-      className="input"
+      class="input"
       placeholder="Pokemon or type"
       v-model="inputSearch"
       @input="searchPokemons"
     />
-    <!-- {loading && <div className="loader"></div>} -->
+    <!-- {loading && <div class="loader"></div>} -->
 
-    <PokemonSuggestion v-if="pokemonListResult.length" />
+    <PokemonSuggestion />
   </div>
 </template>
 
