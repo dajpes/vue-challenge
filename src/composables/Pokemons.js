@@ -1,4 +1,4 @@
-import { reactive, toRefs } from 'vue';
+import { reactive, toRefs, watch } from 'vue';
 
 const URL_PATH =
   'https://gist.githubusercontent.com/bar0191/fae6084225b608f25e98b733864a102b/raw/dea83ea9cf4a8a6022bfc89a8ae8df5ab05b6dcc/pokemon.json';
@@ -19,9 +19,8 @@ export default function() {
     }
     const getPokemons = pokemonState.pokemonList.filter(
       ({ Name: pokemonName, Types: types }) => {
-        // console.log("El poke t: ", type,[...type]);
-        // pokemon.Name.toLowerCase().includes(pokemon.toLowerCase())
-        const searchPokemonByType = types.map((type) =>
+        // console.log("El poke t: ", types,[...types]);
+        const searchPokemonByType = types.filter((type) =>
           type.toLowerCase().startsWith(pokemonState.inputSearch),
         );
         // return pokemonName.toLowerCase().includes(pokemonState.inputSearch)
@@ -34,6 +33,23 @@ export default function() {
     pokemonState.pokemonListResult =
       getPokemons.length > 3 ? getPokemons.slice(0, 4) : getPokemons;
   };
+
+  watch(
+    () => pokemonState.maxPoints,
+    (maxPonts) => {
+      if (!pokemonState.pokemonListResult.length) return;
+
+      if (maxPonts) {
+        pokemonState.pokemonListResult = pokemonState.pokemonListResult.sort(
+          (prev, next) => prev.MaxCP - next.MaxCP,
+        );
+      } else {
+        pokemonState.pokemonListResult = pokemonState.pokemonListResult.sort(
+          (prev, next) => next.MaxCP - prev.MaxCP,
+        );
+      }
+    },
+  );
 
   const fetchPokemons = async () => {
     try {
