@@ -2,9 +2,8 @@
   <li>
     <img :src="pokemon.img" :alt="pokemon.About" />
     <div className="info">
-      <h1>
-        <span style="margin-left: 10px">MaxCp:{{ pokemon.MaxCP || "0" }}</span>
-      </h1>
+      <PokemonName :name="pokemon.Name" />
+      <p>Cp:{{ pokemon.MaxCP || "0" }}</p>
       <PokemonType
         v-for="type in pokemon.Types"
         :key="`${type}_${pokemon.Number}`"
@@ -16,12 +15,13 @@
 
 <script>
 import PokemonType from "./PokemonType";
+import PokemonName from "./PokemonName";
 export default {
   props: {
     pokemon: { type: Object, required: true },
   },
   setup() {
-    return { PokemonType };
+    return { PokemonType, PokemonName };
   },
 };
 </script>
