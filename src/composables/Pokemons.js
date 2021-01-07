@@ -6,17 +6,20 @@ const URL_PATH =
 const pokemonState = reactive({
   pokemonList: [],
   maxPoints: false,
+  searchingPokemons: false,
   inputSearch: '',
   pokemonListResult: [],
 });
 
 export default function() {
-  const searchPokemons = () => {
-    console.log('Me esta escribiendo');
+  const searchPokemons = async () => {
     if (pokemonState.inputSearch === '') {
       pokemonState.pokemonListResult.length = 0;
       return;
     }
+    pokemonState.searchingPokemons = true;
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
     const getPokemons = pokemonState.pokemonList.filter(
       ({ Name: pokemonName, Types: types }) => {
         // console.log("El poke t: ", types,[...types]);
@@ -32,6 +35,7 @@ export default function() {
     );
     pokemonState.pokemonListResult =
       getPokemons.length > 3 ? getPokemons.slice(0, 4) : getPokemons;
+    pokemonState.searchingPokemons = false;
   };
 
   watch(
