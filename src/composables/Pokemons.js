@@ -17,8 +17,16 @@ export default function() {
       pokemonState.pokemonListResult.length = 0;
       return;
     }
-    console.log('No tengo q aparecer');
     pokemonState.searchingPokemons = true;
+
+    await new Promise(function(resolve) {
+      setTimeout(resolve, 700);
+    });
+
+    if (pokemonState.inputSearch === '') {
+      pokemonState.searchingPokemons = false;
+      return;
+    }
 
     const getPokemons = pokemonState.pokemonList.filter(
       ({ Name: pokemonName, Types: types }) => {
