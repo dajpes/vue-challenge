@@ -14,6 +14,7 @@ const pokemonState = reactive({
 export default function() {
   const searchPokemons = async () => {
     if (pokemonState.inputSearch === '') {
+        pokemonState.searchingPokemons = false;
       pokemonState.pokemonListResult.length = 0;
       return;
     }
@@ -23,10 +24,7 @@ export default function() {
       setTimeout(resolve, 700);
     });
 
-    if (pokemonState.inputSearch === '') {
-      pokemonState.searchingPokemons = false;
-      return;
-    }
+    if (pokemonState.inputSearch === '') return
 
     const getPokemons = pokemonState.pokemonList.filter(
       ({ Name: pokemonName, Types: types }) => {
