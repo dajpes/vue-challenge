@@ -18,7 +18,6 @@
 </template>
 
 <script>
-// import { reactive } from "vue";
 import PokemonSuggestion from "./components/pokemon/PokemonSuggestion.vue";
 import PokemonHandler from "./composables/Pokemons";
 

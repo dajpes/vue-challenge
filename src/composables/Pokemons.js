@@ -22,11 +22,9 @@ export default function() {
 
     const getPokemons = pokemonState.pokemonList.filter(
       ({ Name: pokemonName, Types: types }) => {
-        // console.log("El poke t: ", types,[...types]);
         const searchPokemonByType = types.filter((type) =>
           type.toLowerCase().startsWith(pokemonState.inputSearch),
         );
-        // return pokemonName.toLowerCase().includes(pokemonState.inputSearch)
         return (
           pokemonName.toLowerCase().includes(pokemonState.inputSearch) ||
           searchPokemonByType.length
