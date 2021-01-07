@@ -1,7 +1,7 @@
 <template>
   <li>
     <img :src="pokemon.img" :alt="pokemon.About" />
-    <div className="info">
+    <div class="info">
       <PokemonName :name="pokemon.Name" />
       <p>Cp:{{ pokemon.MaxCP || "0" }}</p>
       <PokemonType
