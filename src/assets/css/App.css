@@ -220,7 +220,6 @@ body {
     margin: auto;
     background: transparent;
     text-align: center;
-    overflow: hidden;
 }
 html {
     background: url('../bg.png');
