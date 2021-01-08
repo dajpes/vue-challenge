@@ -29,10 +29,10 @@ export default {
       maxPoints,
       searchingPokemons,
       inputSearch,
-      fetchPokemons,
+      fetchAndStorePokemons,
     } = PokemonHandler();
 
-    fetchPokemons();
+    fetchAndStorePokemons();
 
     return {
       PokemonSuggestion,

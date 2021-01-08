@@ -59,14 +59,11 @@ export default function() {
     },
   );
 
-  const fetchPokemons = async () => {
-    const fetchPok = await fetch(FETCH.POKEMON_FETCH.value)
-      .catch((e) => {
-        console.error('Error fetching pokemons: ',e);
-        throw new Error(e);
-      });
-    pokemonState.pokemonList = await fetchPok.json();
+  const fetchAndStorePokemons = async () => {
+    const fetchResponse = await fetch(FETCH.POKEMON_FETCH.value);
+    pokemonState.pokemonList = await fetchResponse.json();
   };
 
-  return { searchPokemons, fetchPokemons, ...toRefs(pokemonState) };
+
+  return { searchPokemons, fetchAndStorePokemons, ...toRefs(pokemonState) };
 }
