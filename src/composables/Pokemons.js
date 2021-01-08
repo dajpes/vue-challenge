@@ -18,9 +18,9 @@ export default function() {
     pokemonState.searchingPokemons = true;
 
     //The line below works as a "delay" for every pokemon search
-    // await new Promise(function(resolve) {
-    //   setTimeout(resolve, 700);
-    // });
+    await new Promise(function(resolve) {
+      setTimeout(resolve, 700);
+    });
 
     if (!pokemonState.inputSearch) return;
 
