@@ -13,9 +13,9 @@ export default {
   setup(props) {
     const { inputSearch } = PokemonHandler();
     const highLightName = () => {
-      if(!inputSearch.value.length) {
-        return props.name
-      }
+      if(!inputSearch.value)return props.name
+
+      
       const searchPattern = new RegExp(inputSearch.value, "ig");
       const foundName = props.name.search(searchPattern) !== -1;
       const sameAsPokemon =
