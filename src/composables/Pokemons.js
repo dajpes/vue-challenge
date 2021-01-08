@@ -1,8 +1,5 @@
 import { reactive, toRefs, watch } from 'vue';
-
-const URL_PATH =
-  'https://gist.githubusercontent.com/bar0191/fae6084225b608f25e98b733864a102b/raw/dea83ea9cf4a8a6022bfc89a8ae8df5ab05b6dcc/pokemon.json';
-
+import { FETCH } from '../config/constants';
 const pokemonState = reactive({
   pokemonList: [],
   maxPoints: false,
@@ -14,18 +11,18 @@ const pokemonState = reactive({
 export default function() {
   const searchPokemons = async () => {
     if (!pokemonState.inputSearch) {
-        pokemonState.searchingPokemons = false;
+      pokemonState.searchingPokemons = false;
       pokemonState.pokemonListResult.length = 0;
       return;
     }
     pokemonState.searchingPokemons = true;
 
     //The line below works as a "delay" for every pokemon search
-    await new Promise(function(resolve) {
-      setTimeout(resolve, 700);
-    });
+    // await new Promise(function(resolve) {
+    //   setTimeout(resolve, 700);
+    // });
 
-    if (!pokemonState.inputSearch) return
+    if (!pokemonState.inputSearch) return;
 
     const getPokemons = pokemonState.pokemonList.filter(
       ({ Name: pokemonName, Types: types }) => {
@@ -63,13 +60,12 @@ export default function() {
   );
 
   const fetchPokemons = async () => {
-    try {
-      const fetchPok = await fetch(URL_PATH).then((res) => res.json());
-      pokemonState.pokemonList = fetchPok;
-    } catch (e) {
-      console.error('Error while Fetching Pokemons: ', e);
-      throw new Error(e);
-    }
+    const fetchPok = await fetch(FETCH.POKEMON_FETCH.value)
+      .catch((e) => {
+        console.error('Error fetching pokemons: ',e);
+        throw new Error(e);
+      });
+    pokemonState.pokemonList = await fetchPok.json();
   };
 
   return { searchPokemons, fetchPokemons, ...toRefs(pokemonState) };
